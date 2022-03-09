@@ -1,0 +1,60 @@
+body {
+    background: #012e5e;
+    padding: 0;
+    margin: 0;
+    color: #012e5e;
+}
+
+.main {
+    width: 100%;
+    margin: 100px 0 150px;
+    background-color: #ccc;
+}
+
+.container {
+    width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.clear{
+    clear: both;
+}
+
+.section-1 .profile-image {
+    width: 30%;
+    margin: 0 20px 20px;
+    background-color: #ffb606;
+    display: inline-block;
+    float: left;
+}
+
+.section-1 .profile-image img {
+    width: 100%;
+}
+
+.section-1 .profile-info {
+    width: calc(70% - 40px);
+    display: inline-block;
+}
+
+.section-1 .profile-info h2 {
+    margin-bottom: 20px;
+}
+
+.section-2{
+    background-color: #fff;
+    padding: 40px 50px;
+    border-radius: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.row .col {
+    width: 50%;
+    padding-left: 5px;
+}
