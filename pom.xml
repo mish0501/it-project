@@ -10,8 +10,7 @@
   <packaging>war</packaging>
 
   <name>test2 Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>http://localhost:8080/it_project_war</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,12 +25,10 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
       <version>5.0.0</version>
-      <scope>provided</scope>
     </dependency>
   </dependencies>
 
