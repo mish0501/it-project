@@ -9,11 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "Login", urlPatterns = {"/login"})
+@WebServlet(name = "Login", urlPatterns = {"/login", "/index.html", "/index.jsp"})
 public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("/login.html").forward(request, response);
     }
 
     @Override
