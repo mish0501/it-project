@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <title>Регистрация</title>
     <link rel="stylesheet" href="../resources/css/forms.css">
 </head>
 <body>
-<form action="/register">
+<form method="post" action="/register">
     <h1>Създаване на профил</h1>
+
+    <%@include file="blocks/alerts.jsp" %>
+
     <div class="container">
         <div class="form-group">
             <label for="name">Име:</label>
@@ -19,11 +22,12 @@
         </div>
         <div class="form-group">
             <label for="password">Парола:</label>
-            <input type="text" name="password" id="password" placeholder="Въведете парола поне 8 символа">
+            <input type="password" name="password" id="password" placeholder="Въведете парола поне 8 символа">
         </div>
         <div class="form-group">
-            <label for="retype-password">Повтори парола:</label>
-            <input type="text" name="retype-password" id="retype-password" placeholder="Въведете парола поне 8 символа">
+            <label for="passwordConfirm">Повтори парола:</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm"
+                   placeholder="Въведете парола поне 8 символа">
         </div>
         <div class="form-group">
             <button type="submit">Регистрация</button>

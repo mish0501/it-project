@@ -10,6 +10,22 @@ h1 {
     display: block;
 }
 
+.alert {
+    max-width: 980px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.error {
+    background-color: #c40000;
+}
+
+.success {
+    background-color: #00c400;
+}
+
 .container {
     max-width: 980px;
     margin: 0 auto;

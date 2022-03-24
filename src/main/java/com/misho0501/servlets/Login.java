@@ -7,13 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "Login", urlPatterns = {"/login", "/index.html", "/index.jsp"})
 public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/public/login.html").forward(request, response);
+        request.getRequestDispatcher("/public/login.jsp").forward(request, response);
     }
 
     @Override
@@ -22,21 +21,5 @@ public class Login extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        System.out.println("username: " + username);
-        System.out.println("password: " + password);
-
-        // do some processing here...
-
-        // get response writer
-        PrintWriter writer = response.getWriter();
-
-        // build HTML code
-        String htmlRespone = "<html>";
-        htmlRespone += "<h2>Your username is: " + username + "<br/>";
-        htmlRespone += "Your password is: " + password + "</h2>";
-        htmlRespone += "</html>";
-
-        // return response
-        writer.println(htmlRespone);
     }
 }
