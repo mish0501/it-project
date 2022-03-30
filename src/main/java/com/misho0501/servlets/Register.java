@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Register extends HttpServlet {
     Repository repository;
 
-    public void init(){
+    public void init() {
         repository = Repository.getInstance();
     }
 
@@ -35,18 +35,22 @@ public class Register extends HttpServlet {
 
         if (repository.hasExist(username)) {
             request.setAttribute("error", "Username already exists.");
+            request.setAttribute("name", name);
+            request.setAttribute("username", username);
             request.getRequestDispatcher("/public/register.jsp").forward(request, response);
             return;
         }
 
-        if (password.equals(passwordConfirm)) {
+        if (password.length() > 0 && password.equals(passwordConfirm) && name.length() > 0 && username.length() > 0) {
             User user = new User(name, username, password);
 
             repository.addUser(user);
 
-            response.sendRedirect("/login");
+            response.sendRedirect("/login?success=Register successfully.");
         } else {
             request.setAttribute("error", "Passwords do not match.");
+            request.setAttribute("name", name);
+            request.setAttribute("username", username);
             request.getRequestDispatcher("/public/register.jsp").forward(request, response);
         }
     }

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../resources/css/forms.css">
 </head>
 <body>
-<form action="login" method="post">
+<form action="${pageContext.request.contextPath}/login" method="post">
     <h1>Влезте в системата</h1>
 
     <%@include file="blocks/alerts.jsp" %>

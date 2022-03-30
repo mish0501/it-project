@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../resources/css/forms.css">
 </head>
 <body>
-<form method="post" action="/register">
+<form method="post" action="${pageContext.request.contextPath}/register">
     <h1>Създаване на профил</h1>
 
     <%@include file="blocks/alerts.jsp" %>
@@ -14,11 +14,13 @@
     <div class="container">
         <div class="form-group">
             <label for="name">Име:</label>
-            <input type="text" name="name" id="name" placeholder="Въведете име за контакт">
+            <input type="text" name="name" id="name" placeholder="Въведете име за контакт"
+                   value="<%= request.getAttribute("name") != null ? request.getAttribute("name") : "" %>">
         </div>
         <div class="form-group">
             <label for="username">Потребителско име:</label>
-            <input type="text" name="username" id="username" placeholder="Въведете потребителско име">
+            <input type="text" name="username" id="username" placeholder="Въведете потребителско име"
+                   value="<%= request.getAttribute("username") != null ? request.getAttribute("username") : "" %>">
         </div>
         <div class="form-group">
             <label for="password">Парола:</label>
