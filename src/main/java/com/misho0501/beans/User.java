@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -19,10 +20,24 @@ public class User {
     private String password;
     private String description;
     private String job;
-    private String location;
+    private Address location;
     private String phone;
     private String email;
-    private ArrayList<Skill> skills;
+    private List<Skill> jobSkills = new ArrayList<Skill>() {{
+        add(new Skill("JavaScript", 0));
+        add(new Skill("PHP", 0));
+        add(new Skill("HTML", 0));
+        add(new Skill("CSS", 0));
+        add(new Skill("Java", 0));
+        add(new Skill("C++", 0));
+        add(new Skill("C#", 0));
+    }};
+
+    private List<Skill> personalSkills = new ArrayList<Skill>() {{
+        add(new Skill("Комуникативност", 0));
+        add(new Skill("Екипна работа", 0));
+        add(new Skill("Креативност", 0));
+    }};
 
     public User(String name, String username, String password) {
         this.name = name;
@@ -34,12 +49,20 @@ public class User {
         this.username = username;
     }
 
-    public void addSkill(Skill skill) {
-        skills.add(skill);
+    public void addJobSkill(Skill job) {
+        jobSkills.add(job);
     }
 
-    public void removeSkill(Skill skill) {
-        skills.remove(skill);
+    public void removeJobSkill(Skill job) {
+        jobSkills.remove(job);
+    }
+
+    public void addPersonalSkills(Skill personalSkill) {
+        personalSkills.add(personalSkill);
+    }
+
+    public void removePersonalSkills(Skill personalSkill) {
+        personalSkills.remove(personalSkill);
     }
 
     @Override

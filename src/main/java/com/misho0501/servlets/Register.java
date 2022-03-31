@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 @WebServlet(name = "Register", value = "/register")
 public class Register extends HttpServlet {
@@ -25,16 +26,13 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
-
         String name = request.getParameter("name");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String passwordConfirm = request.getParameter("passwordConfirm");
 
         if (repository.hasExist(username)) {
-            request.setAttribute("error", "Username already exists.");
+            request.setAttribute("error", "Потребителското име вече съществува.");
             request.setAttribute("name", name);
             request.setAttribute("username", username);
             request.getRequestDispatcher("/public/register.jsp").forward(request, response);
@@ -46,9 +44,9 @@ public class Register extends HttpServlet {
 
             repository.addUser(user);
 
-            response.sendRedirect("/login?success=Register successfully.");
+            response.sendRedirect("/login?success=" + URLEncoder.encode("Успешна регистрация.", "UTF-8"));
         } else {
-            request.setAttribute("error", "Passwords do not match.");
+            request.setAttribute("error", "Паролите не съвпадат.");
             request.setAttribute("name", name);
             request.setAttribute("username", username);
             request.getRequestDispatcher("/public/register.jsp").forward(request, response);

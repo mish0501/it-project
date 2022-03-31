@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../resources/css/forms.css">
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/register">
+<form method="post" action="<%= request.getContextPath() %>/register">
     <h1>Създаване на профил</h1>
 
     <%@include file="blocks/alerts.jsp" %>
