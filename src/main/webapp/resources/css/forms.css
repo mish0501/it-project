@@ -1,5 +1,5 @@
 body {
-    background-color: #ccc;
+    background-color: #012e5e;
     color: #012e5e;
 }
 
@@ -26,8 +26,15 @@ h1 {
     background-color: #00c400;
 }
 
-.container {
+.main {
+    background: #ccc;
     max-width: 980px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.container {
     margin: 0 auto;
     padding: 20px;
     background-color: #ffb606;
@@ -65,4 +72,8 @@ button {
     border-radius: 4px;
     cursor: pointer;
     display: block;
+}
+
+.nav .container{
+    width: 1020px;
 }
