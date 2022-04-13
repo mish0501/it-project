@@ -5,8 +5,9 @@
 <head>
     <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <title>Профил</title>
-    <link rel="stylesheet" href="../resources/css/profile.css">
+    <link rel="stylesheet" href="../resources/css/modal.css">
     <link rel="stylesheet" href="../resources/css/nav.css">
+    <link rel="stylesheet" href="../resources/css/profile.css">
 </head>
 <body>
 <%@include file="blocks/nav.jsp" %>
@@ -131,5 +132,7 @@
         </div>
     </div>
 </div>
+
+<%@include file="blocks/welcomeModal.jsp"%>
 </body>
 </html>
