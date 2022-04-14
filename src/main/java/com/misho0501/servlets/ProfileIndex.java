@@ -1,5 +1,6 @@
 package com.misho0501.servlets;
 
+import com.misho0501.beans.User;
 import com.misho0501.repository.Repository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,8 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-@WebServlet(name = "Profile", urlPatterns = {"/profile"})
-public class Profile extends HttpServlet {
+@WebServlet(name = "ProfileIndex", urlPatterns = {"/profile"})
+public class ProfileIndex extends HttpServlet {
     Repository repository;
 
     public void init() {
@@ -20,12 +21,24 @@ public class Profile extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/login?error=" + URLEncoder.encode("Трябва да сте логнати, за да видите страницата", "UTF-8"));
-            return;
+        String username = request.getParameter("username");
+        User user = null;
+        if (username != null && !username.isEmpty()) {
+            user = repository.getUserByUsername(username);
         }
 
-        request.getRequestDispatcher("/public/profile.jsp").forward(request, response);
+        if (request.getSession().getAttribute("user") == null) {
+            if (user == null) {
+                response.sendRedirect("/login?error=" + URLEncoder.encode("Трябва да сте логнати, за да видите страницата", "UTF-8"));
+                return;
+            }
+        } else {
+            user = (User) request.getSession().getAttribute("user");
+        }
+
+        request.setAttribute("user", user);
+
+        request.getRequestDispatcher("/public/profile/index.jsp").forward(request, response);
     }
 
     @Override

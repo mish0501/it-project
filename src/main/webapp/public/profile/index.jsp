@@ -1,19 +1,34 @@
 <%@ page import="com.misho0501.beans.Skill" %>
-<jsp:useBean id="user" scope="session" type="com.misho0501.beans.User"/>
+<%@ page import="com.misho0501.beans.User" %>
+<%
+    User user = (User) request.getAttribute("user");
+    User sessionUser = (User) session.getAttribute("user");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <title>Профил</title>
-    <link rel="stylesheet" href="../resources/css/modal.css">
-    <link rel="stylesheet" href="../resources/css/nav.css">
-    <link rel="stylesheet" href="../resources/css/profile.css">
+    <link rel="stylesheet" href="../../resources/css/modal.css">
+    <link rel="stylesheet" href="../../resources/css/nav.css">
+    <link rel="stylesheet" href="../../resources/css/profile.css">
 </head>
 <body>
-<%@include file="blocks/nav.jsp" %>
+<%@include file="../blocks/nav.jsp" %>
 <div class="main">
     <div class="container">
         <div class="section-1">
+            <% if (user.equals(sessionUser)) { %>
+            <div class="actions">
+                <a
+                    class="action"
+                    href="<%= request.getContextPath() %>/profile/edit"
+                >
+                    Редактирай
+                </a>
+            </div>
+            <% } %>
+
             <div class="profile-image">
                 <img src="<%= user.getPhoto() != null ? user.getPhoto() : "../resources/images/male.svg" %>" alt="">
             </div>
@@ -133,6 +148,6 @@
     </div>
 </div>
 
-<%@include file="blocks/welcomeModal.jsp"%>
+<%@include file="../blocks/welcomeModal.jsp" %>
 </body>
 </html>

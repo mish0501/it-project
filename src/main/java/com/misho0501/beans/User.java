@@ -78,4 +78,10 @@ public class User {
     public int hashCode() {
         return Objects.hash(username);
     }
+
+    public void update(String name, String job, String description) {
+        this.name = name;
+        this.description = description;
+        this.job = job;
+    }
 }
