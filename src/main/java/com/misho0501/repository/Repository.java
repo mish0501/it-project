@@ -38,4 +38,8 @@ public class Repository {
         }
         return null;
     }
+
+    public HashSet<User> getUsers() {
+        return users;
+    }
 }

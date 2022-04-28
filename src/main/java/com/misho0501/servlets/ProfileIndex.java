@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-@WebServlet(name = "ProfileIndex", urlPatterns = {"/profile"})
+@WebServlet(name = "ProfileIndex", urlPatterns = {"/user"})
 public class ProfileIndex extends HttpServlet {
     Repository repository;
 
@@ -27,18 +27,18 @@ public class ProfileIndex extends HttpServlet {
             user = repository.getUserByUsername(username);
         }
 
-        if (request.getSession().getAttribute("user") == null) {
-            if (user == null) {
+        if (user == null) {
+            if (request.getSession().getAttribute("user") == null) {
                 response.sendRedirect(request.getContextPath() + "/login?error=" + URLEncoder.encode("Трябва да сте логнати, за да видите страницата", "UTF-8"));
                 return;
+            } else {
+                user = (User) request.getSession().getAttribute("user");
             }
-        } else {
-            user = (User) request.getSession().getAttribute("user");
         }
 
         request.setAttribute("user", user);
 
-        request.getRequestDispatcher("/public/profile/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/public/user/index.jsp").forward(request, response);
     }
 
     @Override

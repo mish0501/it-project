@@ -32,7 +32,7 @@ public class Login extends HttpServlet {
         if (user != null && user.getPassword().equals(password)) {
             request.getSession().setAttribute("user", user);
 
-            response.sendRedirect(request.getContextPath() + "/profile");
+            response.sendRedirect(request.getContextPath() + "/user");
         } else {
             request.setAttribute("error", "Невалидни потребителско име или парола");
             request.getRequestDispatcher("/public/login.jsp").forward(request, response);

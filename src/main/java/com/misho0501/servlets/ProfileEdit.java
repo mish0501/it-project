@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 
-@WebServlet(name = "ProfileEdit", urlPatterns = {"/profile/edit"})
+@WebServlet(name = "ProfileEdit", urlPatterns = {"/user/edit"})
 public class ProfileEdit extends HttpServlet {
     Repository repository;
 
@@ -26,7 +26,7 @@ public class ProfileEdit extends HttpServlet {
             return;
         }
 
-        request.getRequestDispatcher("/public/profile/edit.jsp").forward(request, response);
+        request.getRequestDispatcher("/public/user/edit.jsp").forward(request, response);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class ProfileEdit extends HttpServlet {
 
         user.update(name, job, description);
 
-        response.sendRedirect(request.getContextPath() + "/profile");
+        response.sendRedirect(request.getContextPath() + "/user");
     }
 }

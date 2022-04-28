@@ -6,9 +6,11 @@
         %>
         <a class="nav-link" href="<%= request.getContextPath() %>/login">Вход</a>
         <a class="nav-link" href="<%= request.getContextPath() %>/register">Регистрация</a>
+        <a class="nav-link" href="<%= request.getContextPath() %>/users">Потребители</a>
         <%
         } else {
         %>
+        <a class="nav-link" href="<%= request.getContextPath() %>/users">Потребители</a>
         <a class="nav-link" href="<%= request.getContextPath() %>/logout">Изход</a>
         <%
             }

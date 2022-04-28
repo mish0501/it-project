@@ -1,26 +1,33 @@
 package com.misho0501.servlets;
 
+import com.misho0501.beans.User;
+import com.misho0501.repository.Repository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.HashSet;
 
-@WebServlet(name = "WelcomeModal", urlPatterns = {"/welcomeModal"})
-public class WelcomeModal extends HttpServlet {
+@WebServlet(name = "UsersServlet", value = "/users")
+public class UsersServlet extends HttpServlet {
+    private Repository repository;
+
+    public void init() {
+        repository = Repository.getInstance();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HashSet<User> users = repository.getUsers();
+        request.setAttribute("users", users);
+        request.getRequestDispatcher("/public/users.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie cookie = new Cookie("welcome", "false");
-        cookie.setMaxAge(24 * 60 * 60);
-        response.addCookie(cookie);
 
-        response.sendRedirect(request.getContextPath() + "/user");
     }
 }
