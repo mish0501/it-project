@@ -44,7 +44,7 @@ public class Register extends HttpServlet {
 
             repository.addUser(user);
 
-            response.sendRedirect("/login?success=" + URLEncoder.encode("Успешна регистрация.", "UTF-8"));
+            response.sendRedirect(request.getContextPath() + "/login?success=" + URLEncoder.encode("Успешна регистрация.", "UTF-8"));
         } else {
             request.setAttribute("error", "Паролите не съвпадат.");
             request.setAttribute("name", name);

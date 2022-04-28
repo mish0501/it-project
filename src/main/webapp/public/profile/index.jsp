@@ -9,9 +9,9 @@
 <head>
     <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <title>Профил</title>
-    <link rel="stylesheet" href="../../resources/css/modal.css">
-    <link rel="stylesheet" href="../../resources/css/nav.css">
-    <link rel="stylesheet" href="../../resources/css/profile.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/modal.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/nav.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/profile.css">
 </head>
 <body>
 <%@include file="../blocks/nav.jsp" %>
@@ -30,7 +30,7 @@
             <% } %>
 
             <div class="profile-image">
-                <img src="<%= user.getPhoto() != null ? user.getPhoto() : "../resources/images/male.svg" %>" alt="">
+                <img src="<%= user.getPhoto() != null ? user.getPhoto() : request.getContextPath() + "/resources/images/male.svg" %>" alt="">
             </div>
 
             <div class="profile-info">

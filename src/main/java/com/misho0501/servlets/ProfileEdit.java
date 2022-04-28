@@ -22,7 +22,7 @@ public class ProfileEdit extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/login?error=" + URLEncoder.encode("Трябва да сте логнати, за да видите страницата", "UTF-8"));
+            response.sendRedirect(request.getContextPath() + "/login?error=" + URLEncoder.encode("Трябва да сте логнати, за да видите страницата", "UTF-8"));
             return;
         }
 
@@ -39,6 +39,6 @@ public class ProfileEdit extends HttpServlet {
 
         user.update(name, job, description);
 
-        response.sendRedirect("/profile");
+        response.sendRedirect(request.getContextPath() + "/profile");
     }
 }

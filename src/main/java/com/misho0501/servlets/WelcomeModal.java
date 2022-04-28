@@ -21,6 +21,6 @@ public class WelcomeModal extends HttpServlet {
         cookie.setMaxAge(24 * 60 * 60);
         response.addCookie(cookie);
 
-        response.sendRedirect("/profile");
+        response.sendRedirect(request.getContextPath() + "/profile");
     }
 }

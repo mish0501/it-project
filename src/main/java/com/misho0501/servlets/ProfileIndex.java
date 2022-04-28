@@ -29,7 +29,7 @@ public class ProfileIndex extends HttpServlet {
 
         if (request.getSession().getAttribute("user") == null) {
             if (user == null) {
-                response.sendRedirect("/login?error=" + URLEncoder.encode("Трябва да сте логнати, за да видите страницата", "UTF-8"));
+                response.sendRedirect(request.getContextPath() + "/login?error=" + URLEncoder.encode("Трябва да сте логнати, за да видите страницата", "UTF-8"));
                 return;
             }
         } else {
