@@ -2,8 +2,10 @@ package com.misho0501.servlets;
 
 import com.misho0501.beans.User;
 import com.misho0501.repository.Repository;
+import helpers.CookieWorker;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,11 +39,21 @@ public class ProfileIndex extends HttpServlet {
         }
 
         request.setAttribute("user", user);
+        request.setAttribute("isVisible", checkWelcomeMessageIsVisible(request, user));
 
         request.getRequestDispatcher("/public/user/index.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    }
+
+    private boolean checkWelcomeMessageIsVisible(HttpServletRequest request, User user) {
+        Cookie cookie = CookieWorker.getWelcomeCookie(request);
+        if (cookie == null) {
+            return true;
+        }
+
+        return !cookie.getValue().contains(user.getUsername());
     }
 }

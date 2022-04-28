@@ -1,5 +1,7 @@
 package com.misho0501.servlets;
 
+import com.misho0501.beans.User;
+import helpers.CookieWorker;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -17,10 +19,20 @@ public class WelcomeModal extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Cookie cookie = new Cookie("welcome", "false");
+        User user = (User) request.getSession().getAttribute("user");
+        String welcomeCookie = getWelcomeCookie(request);
+        Cookie cookie = new Cookie("welcome", String.format("%s+%s", welcomeCookie, user.getUsername()));
         cookie.setMaxAge(24 * 60 * 60);
         response.addCookie(cookie);
 
         response.sendRedirect(request.getContextPath() + "/user");
+    }
+
+    private String getWelcomeCookie(HttpServletRequest request) {
+        Cookie cookie = CookieWorker.getWelcomeCookie(request);
+        if (cookie != null) {
+            return cookie.getValue();
+        }
+        return "";
     }
 }
