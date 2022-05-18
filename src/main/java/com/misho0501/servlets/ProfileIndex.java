@@ -25,6 +25,7 @@ public class ProfileIndex extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         User user = null;
+        boolean isUserFromSession = false;
         if (username != null && !username.isEmpty()) {
             user = repository.getUserByUsername(username);
         }
@@ -35,11 +36,12 @@ public class ProfileIndex extends HttpServlet {
                 return;
             } else {
                 user = (User) request.getSession().getAttribute("user");
+                isUserFromSession = true;
             }
         }
 
         request.setAttribute("user", user);
-        request.setAttribute("isVisible", checkWelcomeMessageIsVisible(request, user));
+        request.setAttribute("isVisible", checkWelcomeMessageIsVisible(request, user, isUserFromSession));
 
         request.getRequestDispatcher("/public/user/index.jsp").forward(request, response);
     }
@@ -48,12 +50,12 @@ public class ProfileIndex extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
 
-    private boolean checkWelcomeMessageIsVisible(HttpServletRequest request, User user) {
+    private boolean checkWelcomeMessageIsVisible(HttpServletRequest request, User user, boolean isUserFromSession) {
         Cookie cookie = CookieWorker.getWelcomeCookie(request);
         if (cookie == null) {
-            return true;
+            return isUserFromSession;
         }
 
-        return !cookie.getValue().contains(user.getUsername());
+        return !cookie.getValue().contains(user.getUsername()) && !isUserFromSession;
     }
 }

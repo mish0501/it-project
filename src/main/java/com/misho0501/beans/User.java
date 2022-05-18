@@ -79,9 +79,20 @@ public class User {
         return Objects.hash(username);
     }
 
-    public void update(String name, String job, String description) {
+    public void updateBasicInfo(String name, String job, String description) {
         this.name = name;
         this.description = description;
         this.job = job;
+    }
+
+    public void updateSkills(List<Skill> jobSkills, List<Skill> personalSkills) {
+        this.jobSkills = jobSkills;
+        this.personalSkills = personalSkills;
+    }
+
+    public void updateContact(String street, String city, String phone, String email) {
+        this.location.update(street, city);
+        this.phone = phone;
+        this.email = email;
     }
 }

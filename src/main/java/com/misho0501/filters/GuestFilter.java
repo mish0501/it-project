@@ -19,7 +19,7 @@ public class GuestFilter implements Filter {
         if (session.getAttribute("user") == null) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            response.sendRedirect(request.getContextPath() + "/profile");
+            response.sendRedirect(request.getContextPath() + "/user");
         }
     }
 }

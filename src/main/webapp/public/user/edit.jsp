@@ -11,14 +11,14 @@
 </head>
 <body>
 <%@include file="../blocks/nav.jsp" %>
-<form action="<%= request.getContextPath() %>/profile/edit" method="post">
+<form action="<%= request.getContextPath() %>/user/edit" method="post">
     <div class="main">
         <div class="container">
             <div class="section-1">
                 <div class="actions">
                     <button
-                            type="submit"
                             class="action"
+                            id="basicInfoButton"
                     >
                         Запази
                     </button>
@@ -32,19 +32,19 @@
 
                     <label>
                         Име:
-                        <input type="text" name="name" placeholder="Име"
+                        <input type="text" name="name" placeholder="Име" id="name"
                                value="<%= user.getName() != null ? user.getName() : "" %>">
                     </label>
 
                     <label>
                         Работа:
-                        <input type="text" name="jobTitle" placeholder="Работа:"
+                        <input type="text" name="jobTitle" placeholder="Работа:" id="jobTitle"
                                value="<%= user.getJob() != null ? user.getJob() : "" %>">
                     </label>
 
                     <label>
                         Описание:
-                        <textarea name="description"
+                        <textarea name="description" id="description"
                                   placeholder="Описание:"><%= user.getDescription() != null ? user.getDescription() : "" %></textarea>
                     </label>
                 </div>
@@ -53,6 +53,15 @@
             </div>
 
             <div class="section section-2">
+                <div class="actions">
+                    <button
+                            id="skillsButton"
+                            class="action"
+                    >
+                        Запази
+                    </button>
+                </div>
+
                 <div class="row">
                     <div class="col">
                         <h3>Професионални</h3>
@@ -83,9 +92,8 @@
                             <%= jobSkill.getName() %>
                         </p>
 
-                        <span class="progress-bar">
-                        <span class="progress" style="width: <%= jobSkill.getPercent() %>%"></span>
-                    </span>
+                        <input class="jobSkills" name="<%=jobSkill.getName()%>" type="range" min="1" max="100" value="<%= jobSkill.getPercent() %>">
+                        </span>
                         <%}%>
                     </div>
                     <div class="col">
@@ -94,9 +102,8 @@
                             <%= personalSkill.getName() %>
                         </p>
 
-                        <span class="progress-bar">
-                        <span class="progress" style="width: <%= personalSkill.getPercent() %>%"></span>
-                    </span>
+                        <input class="personalSkills" name="<%= personalSkill.getName() %>" type="range" min="1" max="100" value="<%= personalSkill.getPercent() %>">
+                        </span>
                         <%}%>
                     </div>
                 </div>
@@ -104,24 +111,26 @@
             </div>
 
             <div class="section section-3">
+                <div class="actions">
+                    <button
+                            id="contactsButton"
+                            class="action"
+                    >
+                        Запази
+                    </button>
+                </div>
+
                 <div class="row">
                     <div class="col">
                         <p>Email</p>
 
-                        <%if (user.getEmail() != null) {%>
-                        <a href="mailto:<%= user.getEmail() %>" class="alt-text">
-                            <%= user.getEmail() %>
-                        </a>
-                        <%}%>
+                        <input type="text" name="email" value="<%= user.getEmail() != null ? user.getEmail() : "" %>" />
                     </div>
                     <div class="col">
                         <p>Град</p>
 
-                        <%if (user.getLocation() != null && user.getLocation().getCity() != null) {%>
-                        <p class="alt-text">
-                            <%= user.getLocation().getCity() %>
-                        </p>
-                        <%}%>
+                        <input type="text" name="city"
+                               value="<%= user.getLocation() != null && user.getLocation().getCity() != null ? user.getLocation().getCity() : "" %>"/>
                     </div>
                 </div>
 
@@ -129,28 +138,22 @@
                     <div class="col">
                         <p>Телефон</p>
 
-                        <%if (user.getPhone() != null) {%>
-                        <a href="#" class="alt-text">
-                            <%= user.getPhone() %>
-                        </a>
-                        <%}%>
+                        <input type="text" name="phone" value="<%= user.getPhone() != null ? user.getPhone() : "" %>"/>
+
                     </div>
                     <div class="col">
                         <p>Улица</p>
 
-                        <%if (user.getLocation() != null && user.getLocation().getStreet() != null) {%>
-                        <p class="alt-text">
-                            <%= user.getLocation().getStreet() %>
-                        </p>
-                        <%}%>
+                        <input type="text" name="street"
+                               value="<%= user.getLocation() != null && user.getLocation().getStreet() != null ? user.getLocation().getStreet() : "" %>"/>
+
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </form>
 
-<%@include file="../blocks/welcomeModal.jsp" %>
+<script src="<%= request.getContextPath() %>/resources/js/editUser.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@
             <div class="actions">
                 <a
                     class="action"
-                    href="<%= request.getContextPath() %>/profile/edit"
+                    href="<%= request.getContextPath() %>/user/edit"
                 >
                     Редактирай
                 </a>

@@ -13,4 +13,9 @@ public class Address {
     private String street;
     private String city;
 
+    public void update(String street, String city) {
+        this.street = street;
+        this.city = city;
+    }
+
 }

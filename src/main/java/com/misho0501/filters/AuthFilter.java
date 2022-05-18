@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.Map;
 
 @WebFilter(filterName = "AuthFilter", servletNames = {
         "Logout", "ProfileIndex", "ProfileEdit", "WelcomeModal"
@@ -17,8 +18,9 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
+        Map<String, String[]> params = request.getParameterMap();
 
-        if (session.getAttribute("user") == null) {
+        if (session.getAttribute("user") == null && !params.containsKey("username")) {
             response.sendRedirect(request.getContextPath() + "/login");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
